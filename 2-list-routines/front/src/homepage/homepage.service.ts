@@ -10,7 +10,7 @@ export class HomepageService {
 
   private readonly routineService = inject(RoutineService);
   
-  getRoutine(): Observable<RoutineDto[]> {
+  getRoutines(): Observable<RoutineDto[]> {
     return this.routineService.getRoutines();
   }
 }
