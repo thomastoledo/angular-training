@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { RoutineDto } from 'domains/routine/routine.model';
+import { RoutineDto } from './routine.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RoutineService {
   private readonly baseUrl = environment.baseUrl;
