@@ -1,10 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { HomepageService } from './homepage.service';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { CommonModule } from '@angular/common';
+import { RoutineService } from '@domain/routine/routine.service';
 
 @Component({
   selector: 'app-homepage',
-  imports: [],
+  imports: [CommonModule],
+  providers: [RoutineService],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })

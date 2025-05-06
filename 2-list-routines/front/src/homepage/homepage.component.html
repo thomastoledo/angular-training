@@ -1,1 +1,7 @@
-<p>homepage works!</p>
+<ul>
+    @for (routine of routines(); track routine.id) {
+        <li>
+            {{routine.name}}
+        </li>
+    }
+</ul>
