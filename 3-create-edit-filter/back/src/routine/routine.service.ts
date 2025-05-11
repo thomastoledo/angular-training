@@ -16,6 +16,10 @@ export class RoutineService {
     return this.routineRepository.find();
   }
 
+  getRoutine(id: string): Promise<Routine | null> {
+    return this.routineRepository.findOneBy({id});
+  }
+
   async createRoutine(dto: CreateRoutineDto): Promise<Routine> {
     const newRoutine = this.routineRepository.create(dto);
     return this.routineRepository.save(newRoutine);

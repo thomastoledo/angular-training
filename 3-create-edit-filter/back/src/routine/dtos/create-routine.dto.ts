@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-export interface CreateRoutineDto {
+export class CreateRoutineDto {
     @ApiProperty()
     name: string;
     @ApiProperty()
@@ -9,7 +9,7 @@ export interface CreateRoutineDto {
     @ApiProperty()
     endingDate: Date;
     @ApiProperty()
-    reccurence: 'minute' | 'hour' | 'day' | 'week' | 'monsth' | 'year';
+    reccurence: 'minute' | 'hour' | 'day' | 'week' | 'month' | 'year';
     @ApiProperty()
     reccurenceCoef: number;
 }
