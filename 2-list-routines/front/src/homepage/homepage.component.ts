@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './homepage.component.scss'
 })
 export class HomepageComponent {
-  
+  // TODO retrieve list of Routines from service
 }
