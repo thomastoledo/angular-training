@@ -14,4 +14,6 @@ export class RoutineService {
   getRoutines(): Observable<RoutineDto[]> {
     return this.httpClient.get<RoutineDto[]>(`${this.baseUrl}/routine/list`);
   }
+
+  //TODO: implement methods to call endpoints corresponding to backend controller
 }

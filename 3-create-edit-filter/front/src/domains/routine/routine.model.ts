@@ -7,3 +7,5 @@ export interface RoutineDto {
   reccurence: 'minute' | 'hour' | 'day' | 'week' | 'month' | 'year';
   reccurenceCoef: number;
 }
+
+// TODO: DTOs for create routine and patch routine
