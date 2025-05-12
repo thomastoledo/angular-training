@@ -8,6 +8,7 @@ import { Routine } from './entities/routine.entity';
   imports: [
     TypeOrmModule.forFeature([Routine])
   ],
+  exports: [RoutineService],
   controllers: [RoutineController],
   providers: [RoutineService]
 })

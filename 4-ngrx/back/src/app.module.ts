@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RoutineModule } from './routine/routine.module';
+import { RoutineStatusModule } from './routine-status/routine-status.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -11,6 +13,8 @@ import { RoutineModule } from './routine/routine.module';
       synchronize: true,
     }),
     RoutineModule,
+    RoutineStatusModule,
+    ScheduleModule.forRoot()
   ],
 })
 export class AppModule {}

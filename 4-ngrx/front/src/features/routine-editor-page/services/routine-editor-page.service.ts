@@ -13,7 +13,7 @@ export class RoutineEditorPageService {
   constructor() {}
 
   getRoutine(id: string): Observable<RoutineDto> {
-    return this.routineService.getRoutine(id);
+    return this.routineService.getRoutineById(id);
   }
 
   createRoutine(

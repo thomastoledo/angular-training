@@ -26,7 +26,7 @@ export class RoutineController {
 
   @Get('/:id')
   public async getRoutine(@Param('id') id: string): Promise<Routine> {
-    const routine = await this.routineService.getRoutine(id);
+    const routine = await this.routineService.getRoutineById(id);
     if (!routine) {
       throw new NotFoundException(`Routine with id ${id} not found.`);
     }

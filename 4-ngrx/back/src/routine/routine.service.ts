@@ -16,7 +16,7 @@ export class RoutineService {
     return this.routineRepository.find();
   }
 
-  getRoutine(id: string): Promise<Routine | null> {
+  getRoutineById(id: string): Promise<Routine | null> {
     return this.routineRepository.findOneBy({id});
   }
 

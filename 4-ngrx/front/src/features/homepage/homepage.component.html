@@ -3,7 +3,6 @@
     <input type="text" placeholder="Search routines..." [(ngModel)]="searchTerm" />
     <button (click)="goToCreate()">+ Create Routine</button>
   </div>
-
   <ul class="routine-list">
     @for (routine of filteredRoutines(); track routine.id) {
       <li class="routine-item">
@@ -18,6 +17,19 @@
             <p><strong>Start:</strong> {{ routine.startingDate | date }}</p>
             <p><strong>End:</strong> {{ routine.endingDate | date }}</p>
             <p><strong>Recurrence:</strong> {{ routine.reccurenceCoef }} time(s) per {{ routine.reccurence }}</p>
+
+            <div class="occurrences">
+              @for (i of routine.occurences; track i) {
+                <label>
+                  <input
+                    type="checkbox"
+                    [checked]="routineStatusesMap().get(routine.id)?.includes(i) ?? false"
+                    (change)="toggleOccurrence(routine.id, i, $event)"
+                  />
+                  {{ i + 1 }}
+                </label>
+              }
+            </div>
           </div>
         }
       </li>
