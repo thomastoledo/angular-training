@@ -1,0 +1,19 @@
+<section class="stats-container">
+  <h1>Routine Stats</h1>
+
+  <ul class="routine-stats">
+    @for (routine of routinesWithStatus(); track routine.id) {
+      <li>
+        <h3>{{ routine.name }}</h3>
+        <p>
+          ✔ {{ routine.doneOccurrences.length }} / {{ routine.reccurenceCoef }}
+          done this {{ routine.reccurence }}
+        </p>
+        <progress
+          [value]="routine.doneOccurrences.length"
+          [max]="routine.reccurenceCoef"
+        ></progress>
+      </li>
+    }
+  </ul>
+</section>
