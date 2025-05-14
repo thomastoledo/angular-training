@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
 
-export type NullableFormControls<T> = {
-  [K in keyof T]: FormControl<T[K] | null>;
+export type NullableFormControls<TYPE> = {
+  [KEY in keyof TYPE]: FormControl<TYPE[KEY] | null>;
 };
