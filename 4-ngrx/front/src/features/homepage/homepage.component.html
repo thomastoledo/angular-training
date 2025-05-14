@@ -18,6 +18,10 @@
             <p><strong>Start:</strong> {{ routine.startingDate | date }}</p>
             <p><strong>End:</strong> {{ routine.endingDate | date }}</p>
             <p><strong>Recurrence:</strong> {{ routine.reccurenceCoef }} time(s) per {{ routine.reccurence }}</p>
+            @for (index of routine.listOccurences; track index) {
+              <label [for]="routine.id + index">#{{index}}</label>
+              <input [id]="routine.id + index" type="checkbox" [checked]="false" (change)="toggleOccurrence(routine.id, index, $event)">
+            }
           </div>
         }
       </li>

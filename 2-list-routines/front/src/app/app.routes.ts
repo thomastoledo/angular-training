@@ -1,4 +1,9 @@
 import { Routes } from '@angular/router';
 
-// TODO set routes
-export const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path: '',
+    loadComponent: () =>
+      import('../homepage/homepage.component').then((m) => m.HomepageComponent),
+  },
+];

@@ -30,7 +30,7 @@ export class RoutineStatusController {
   }
 
   @Post('toggleOccurenceDone')
-  public async markOccurrenceDone(
+  public async toggleOccurrenceDone(
     @Body() dto: ToggleOccurrenceDoneDto
   ): Promise<RoutineStatus> {
     const routineStatus = await this.statusService.toggleOccurenceDone(dto.routineId, dto.index, dto.done);

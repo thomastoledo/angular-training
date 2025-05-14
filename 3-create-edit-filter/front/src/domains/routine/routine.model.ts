@@ -8,4 +8,5 @@ export interface RoutineDto {
   reccurenceCoef: number;
 }
 
-// TODO: DTOs for create routine and patch routine
+export interface CreateRoutineDto extends Omit<RoutineDto, 'id'> {}
+export interface PatchRoutineDto extends Partial<CreateRoutineDto> {}

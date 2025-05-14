@@ -20,19 +20,17 @@ export class RoutineEditorPageComponent implements OnInit {
   private readonly router: Router = inject(Router);
   private readonly routineSummaryPipe = inject(RoutineSummaryPipe);
   private readonly route = inject(ActivatedRoute);
-  private readonly id = toSignal(
-    this.route.paramMap.pipe(map((paramMap) => paramMap.get('id')))
-  );
+  private readonly id = this.route.snapshot.paramMap.get('id');
   readonly mode: 'new' | 'edit' = this.route.snapshot.data['mode'];
 
   routine = signal<RoutineDto | undefined>(void 0);
   summary = signal('');
   loading = computed(() => {
-    return this.id() && !this.routine();
+    return this.id && !this.routine();
   });
 
   ngOnInit(): void {
-    const id = this.id();
+    const id = this.id;
     if (id) {
       this.routineEditorPageService
         .getRoutine(id)
@@ -56,9 +54,9 @@ export class RoutineEditorPageComponent implements OnInit {
         error: (err) => console.error('Failed to create routine', err),
       });
     } else {
-      if (this.id() && this.routine()) {
+      if (this.id && this.routine()) {
         this.routineEditorPageService
-          .patchRoutine(this.id()!, this.routine()!, formRawValues)
+          .patchRoutine(this.id, this.routine()!, formRawValues)
           .subscribe({
             next: () => this.router.navigate(['/list']),
             error: (err) => console.error('Failed to create routine', err),

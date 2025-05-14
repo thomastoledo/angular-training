@@ -5,7 +5,7 @@ import { RoutineDto } from '@domain/routine/routine.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RoutineService {
   private readonly baseUrl = environment.baseUrl;

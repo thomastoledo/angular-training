@@ -1,2 +1,11 @@
-<!-- TODO: implement component -->
-<p>homepage works!</p>
+@if (isLoading) {
+    <p>Is loading...</p>
+} @else {
+    <ul>
+        @for(routine of routines(); track routine.id) {
+        <li>
+            {{routine.name}}
+        </li>
+        }
+    </ul>
+}

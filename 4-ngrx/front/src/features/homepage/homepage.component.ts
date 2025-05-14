@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RoutineService } from '@domain/routine/routine.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-homepage',
@@ -17,7 +18,9 @@ export class HomepageComponent {
   private readonly homepageService = inject(HomepageService);
   private readonly router = inject(Router);
 
-  readonly routines = toSignal(this.homepageService.getRoutines(), { initialValue: [] });
+  readonly routines = toSignal(
+    this.homepageService.getRoutines(), 
+    { initialValue: [] });
   readonly searchTerm = model('');
   readonly expandedId = signal<string | null>(null);
   readonly filteredRoutines = computed(() => {
@@ -35,5 +38,10 @@ export class HomepageComponent {
 
   goToCreate() {
     this.router.navigate(['/new']);
+  }
+
+  toggleOccurrence(routineId: string, occIdx: number, event: Event): void {
+    const checked = (event.target as HTMLInputElement).checked;
+    console.log(`Occurence ${occIdx} of routine ${routineId} has been checked: ${checked}`);
   }
 }
