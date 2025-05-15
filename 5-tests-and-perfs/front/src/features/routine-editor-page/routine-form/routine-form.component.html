@@ -1,0 +1,65 @@
+<form [formGroup]="routineForm()" (ngSubmit)="submit()" class="routine-form">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" type="text" formControlName="name" />
+        @if (routineForm().controls.name.touched && routineForm().controls.name.errors) {
+        <div class="error">{{ routineForm().controls.name.errors | formError }}</div>
+        }
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description"></textarea>
+        @if (routineForm().controls.description.touched && routineForm().controls.description.errors) {
+        <div class="error">{{ routineForm().controls.description.errors | formError }}</div>
+        }
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="startingDate">Start date</label>
+            <input id="startingDate" type="date" formControlName="startingDate" />
+            @if (routineForm().controls.startingDate.touched && routineForm().controls.startingDate.errors) {
+            <div class="error">{{ routineForm().controls.startingDate.errors | formError }}</div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="endingDate">End date</label>
+            <input id="endingDate" type="date" formControlName="endingDate" />
+            @if (routineForm().controls.endingDate.touched && routineForm().controls.endingDate.errors) {
+            <div class="error">{{ routineForm().controls.endingDate.errors | formError }}</div>
+            }
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="reccurence">Recurrence unit (e.g. day)</label>
+            <select id="reccurence" formControlName="reccurence">
+                <option value="minute">Minute</option>
+                <option value="hour">Hour</option>
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+            </select>
+            @if (routineForm().controls.reccurence.touched && routineForm().controls.reccurence.errors) {
+            <div class="error">{{ routineForm().controls.reccurence.errors | formError }}</div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="reccurenceCoef">
+                Times per unit
+                <small>(e.g. 20 times per day)</small>
+            </label>
+            <input id="reccurenceCoef" type="number" min="1" formControlName="reccurenceCoef" />
+            @if (routineForm().controls.reccurenceCoef.touched && routineForm().controls.reccurenceCoef.errors) {
+            <div class="error">{{ routineForm().controls.reccurenceCoef.errors | formError }}</div>
+            }
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="routineForm().invalid">{{actionLabel}}</button>
+</form>
