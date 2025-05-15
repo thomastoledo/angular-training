@@ -1,9 +1,9 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Get,
   Param,
   Post,
-  ParseIntPipe,
   NotFoundException,
   Body,
 } from '@nestjs/common';

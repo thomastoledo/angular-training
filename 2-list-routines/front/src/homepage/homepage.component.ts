@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { CommonModule } from '@angular/common';
+import { HomepageService } from './homepage.service';
+import { RoutineService } from '@domain/routine/routine.service';
 
 @Component({
   selector: 'app-homepage',
-  imports: [],
+  imports: [CommonModule],
+  providers: [RoutineService],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })
 export class HomepageComponent {
-  // TODO retrieve list of Routines from service
+  private readonly homepageService = inject(HomepageService);
+  readonly routines = toSignal(this.homepageService.getRoutines());
 }

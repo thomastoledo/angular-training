@@ -1,6 +1,5 @@
-import { Component, computed, inject, model, signal } from '@angular/core';
+import { Component, computed, inject, model, signal, OnInit } from '@angular/core';
 import { HomepageService } from './services/homepage.service';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { RoutineService } from '@domain/routine/routine.service';
 import { Router } from '@angular/router';
@@ -13,17 +12,22 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })
-export class HomepageComponent {
+export class HomepageComponent implements OnInit {
   private readonly homepageService = inject(HomepageService);
   private readonly router = inject(Router);
 
-  readonly routines = toSignal(this.homepageService.getRoutines(), { initialValue: [] });
+  readonly routines = this.homepageService.listRoutines;
+
   readonly searchTerm = model('');
   readonly expandedId = signal<string | null>(null);
   readonly filteredRoutines = computed(() => {
     const term = this.searchTerm().toLowerCase();
     return this.routines().filter((r) => r.name.toLowerCase().includes(term));
   });
+
+  ngOnInit(): void {
+    this.homepageService.getRoutines();
+  }
 
   toggleExpanded(id: string) {
     this.expandedId.set(this.expandedId() === id ? null : id);
@@ -35,5 +39,11 @@ export class HomepageComponent {
 
   goToCreate() {
     this.router.navigate(['/new']);
+  }
+
+  toggleOccurrence(routineId: string, occIdx: number, event: Event): void {
+    const checked = (event.target as HTMLInputElement).checked;
+    console.log(`Occurence ${occIdx} of routine ${routineId} has been checked: ${checked}`);
+    this.homepageService.toggleOccurrenceDone(routineId, occIdx, checked)
   }
 }

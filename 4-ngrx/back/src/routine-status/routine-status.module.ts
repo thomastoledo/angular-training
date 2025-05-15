@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { RoutineStatusController } from './routine-status.controller';
 import { RoutineStatusService } from './routine-status.service';

@@ -1,9 +1,9 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RoutineStatus } from './entities/routine-status.entity';
 import { Repository } from 'typeorm';
 import { format } from 'date-fns';
-import { maybe } from 'pelouse';
 import { RoutineService } from 'src/routine/routine.service';
 import { Routine } from 'src/routine/entities/routine.entity';
 

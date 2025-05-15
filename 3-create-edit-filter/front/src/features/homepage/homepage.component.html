@@ -1,0 +1,9 @@
+<input [(ngModel)]="searchTerm" type="text" placeholder="Type your research">
+<button (click)="goToCreation()">+ New</button>
+<ul>
+    @for (routine of routines(); track routine.id) {
+        <li>
+            {{routine.name}} - <button>Edit</button>
+        </li>
+    }
+</ul>
