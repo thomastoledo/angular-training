@@ -1,23 +1,50 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { StatsDashboardPageComponent } from './stats-dashboard-page.component';
+import { StatsDashboardPageService } from './services/stats-dashboard-page.service';
+import { vi } from 'vitest';
+import { signal } from '@angular/core';
+
+const mockRoutines = [
+  {
+    id: '1',
+    name: 'Morning Routine',
+    reccurence: 'day',
+    reccurenceCoef: 3,
+    doneOccurrences: [0, 2]
+  },
+  {
+    id: '2',
+    name: 'Evening Routine',
+    reccurence: 'day',
+    reccurenceCoef: 2,
+    doneOccurrences: [0]
+  }
+];
 
 describe('StatsDashboardPageComponent', () => {
-  let component: StatsDashboardPageComponent;
-  let fixture: ComponentFixture<StatsDashboardPageComponent>;
+  it('should display the title and routines', async () => {
+    const fetchAllMock = vi.fn();
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [StatsDashboardPageComponent]
-    })
-    .compileComponents();
+    const mockService = {
+      fetchAll: fetchAllMock,
+      routinesWithStatuses: signal(mockRoutines),
+    };
 
-    fixture = TestBed.createComponent(StatsDashboardPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    await render(StatsDashboardPageComponent, {
+      providers: [{ provide: StatsDashboardPageService, useValue: mockService }],
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /routine stats/i })).toBeInTheDocument();
+
+    for (const routine of mockRoutines) {
+      expect(screen.getByText(routine.name)).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          new RegExp(`✔\\s*${routine.doneOccurrences.length}\\s*/\\s*${routine.reccurenceCoef}`, 'i')
+        )
+      ).toBeInTheDocument();
+    }
+
+    expect(fetchAllMock).toHaveBeenCalled();
   });
 });

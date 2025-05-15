@@ -3,11 +3,21 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@app/*": ["app/*"],
-      "@env/*": ["environments/*"],
-      "@domain/*": ["domains/*"],
-      "@pipes/*": ["shared/pipes/*"],
-      "@shared/*": ["shared/*"],
+      "@app/*": [
+        "app/*"
+      ],
+      "@domain/*": [
+        "domains/*"
+      ],
+      "@env/*": [
+        "environments/*"
+      ],
+      "@pipes/*": [
+        "shared/pipes/*"
+      ],
+      "@shared/*": [
+        "shared/*"
+      ]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
@@ -29,5 +39,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  },
+  }
 }

@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { HeaderComponent } from './header.component';
+import { provideRouter } from '@angular/router';
+
 
 describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [HeaderComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(HeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('should create the header component', async () => {
+    const { fixture } = await render(HeaderComponent, {
+      providers: [provideRouter([])],
+    });
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should display navigation links', async () => {
+    await render(HeaderComponent, {
+      providers: [provideRouter([])],
+    });
+    
+    expect(screen.getByText('🏠 Home')).toBeInTheDocument();
+    expect(screen.getByText('📊 Stats')).toBeInTheDocument();
   });
 });
