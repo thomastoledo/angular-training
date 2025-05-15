@@ -2,11 +2,17 @@
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "extends": "./tsconfig.json",
+  "files": ["src/test-setup.ts"],
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "types": [
-      "jasmine"
-    ]
+      "jasmine",
+      "node",
+      "jest",
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ],
+    "target": "ES2016"
   },
   "include": [
     "src/**/*.spec.ts",
